@@ -17,7 +17,9 @@ This project is evolving. Below are the planned study roadmap to become a backen
 ## ✅ Completed
 
 [x] **Server Creation**: Learned how to initialize and configure a backend server using **Node.js**, **Express**, and **TypeScript**.
+
 [x] **Routing System**: Mastered the process of creating modular routes and connecting them from `index.ts` to the main `app.ts` file.
+
 [x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, and **DELETE** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
 
 🔹 Level 1: Core Logic & Organization
