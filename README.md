@@ -22,10 +22,9 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 [x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, **DELETE**, **PUT** and **PATCH** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
 
-## TODO:
-🔹 Level 1: Core Logic & Organization
+[x] Controllers Refactor: Separate route definitions from business logic for better scalability.
 
-[ ] Controllers Refactor: Separate route definitions from business logic for better scalability.
+## TODO:
 
 🔹 Level 2: Advanced Express Features
 
@@ -47,6 +46,8 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 ## 📝Personal notes: 
 
+## Level 1: Core Logic & Organization
+
 **Routing System:** need to use the cors and app.use(express.json()) for permissions/ read json data.
 
 **CRUD:**
@@ -58,3 +59,5 @@ This project is evolving. Below are the planned study roadmap to become a backen
 **PATCH** is pretty simillar to the post, but doesnt need to be too specified (doesnt require every single info, used to edit/change something inside the object)
 
 **DELETE:** need to get the id from req.params and create a new array without the task i want to delete using the array method .filter()
+
+**controlers:** are the functions from (get,patch,put,delete) separated from the route definitions.
