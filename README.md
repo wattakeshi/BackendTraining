@@ -21,10 +21,8 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 [x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, **DELETE**, **PUT** and **PATCH** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
 
+## TODO:
 🔹 Level 1: Core Logic & Organization
-
-
-
 [ ] Controllers Refactor: Separate route definitions from business logic for better scalability.
 
 🔹 Level 2: Advanced Express Features
@@ -43,7 +41,7 @@ This project is evolving. Below are the planned study roadmap to become a backen
 [ ] Pagination & Filters: Optimize list retrieval for large datasets.
 
 
-##📝 Personal notes: 
+## 📝Personal notes: 
 **Routing System:** need to use the cors and app.use(express.json()) for permissions/ read json data.
 **CRUD:**
 **get** is simple
