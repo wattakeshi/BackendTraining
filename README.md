@@ -46,9 +46,15 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 
 ## 📝Personal notes: 
+
 **Routing System:** need to use the cors and app.use(express.json()) for permissions/ read json data.
+
 **CRUD:**
+
 **get** is simple
+
 **post** needs to create a new Task from the req.body and send this with array method (.push)
+
 **PATCH** is pretty simillar to the post, but doesnt need to be too specified (doesnt require every single info, used to edit/change something inside the object)
+
 **DELETE:** need to get the id from req.params and create a new array without the task i want to delete using the array method .filter()
