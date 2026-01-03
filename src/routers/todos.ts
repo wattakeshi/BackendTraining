@@ -69,3 +69,52 @@ router.delete("/todos/:id", (req, res) => {
 
     res.json({ message: "Tarefa removida com sucesso", id: reqId })
 })
+
+//PUT
+
+router.put("/todos/:id", (req, res) => {
+    //pegar o ID que foi enviado pelo parametro
+    const { id } = req.params;
+    //pegar o objeto (taskname: e o done: que veio do body da requisição)
+    const { taskname, done } = req.body;
+    if (taskname === undefined || done === undefined) {
+        return res.status(400).send({ message: "informações não completa, preencha o resto dos dados" })
+    }
+    //encontrar o index da array do ID
+    const index = data.findIndex(t => t.id === Number(id));
+    if (index === -1) {
+        return res.status(404).send({ message: "Task not found" })
+    };
+
+    const updatedTask = {
+        ...data[index],
+        taskname: taskname,
+        done: done,
+        id: Number(id)
+    }
+    data[index] = updatedTask
+
+    res.status(200).send({ message: "Task atualizada com sucesso!" })
+})
+
+//patch
+//using the same logic from put, but not necessary to put every single info (taskname or done)
+
+router.patch("/todos/:id", (req, res) => {
+    const { id } = req.params;
+    const { taskname, done } = req.body;
+    const index = data.findIndex(t => t.id === Number(id));
+    if (index === -1) {
+        return res.status(404).send({ message: "Task not found" })
+    };
+
+    const updatedTask = {
+        ...data[index],
+        taskname: taskname !== undefined ? taskname : data[index]?.taskname,
+        done: done !== undefined ? done : data[index]?.done,
+        id: Number(id)
+    }
+    data[index] = updatedTask
+
+    res.status(200).send({ message: "Task atualizada com sucesso!" })
+})
