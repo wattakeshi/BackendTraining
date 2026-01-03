@@ -13,20 +13,17 @@ Postman - Used for API testing (planning to migrate to a more automated tool due
 # 🚧 Roadmap
 This project is evolving. Below are the planned study roadmap to become a backend developer:
 
-
 ## ✅ Completed
 
 [x] **Server Creation**: Learned how to initialize and configure a backend server using **Node.js**, **Express**, and **TypeScript**.
 
 [x] **Routing System**: Mastered the process of creating modular routes and connecting them from `index.ts` to the main `app.ts` file.
 
-[x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, and **DELETE** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
+[x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, **DELETE**, **PUT** and **PATCH** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
 
 🔹 Level 1: Core Logic & Organization
 
-[ ] PUT Method: Implement full updates for existing tasks.
 
-[ ] PATCH Method: Add a route to toggle the done status only.
 
 [ ] Controllers Refactor: Separate route definitions from business logic for better scalability.
 
@@ -44,3 +41,12 @@ This project is evolving. Below are the planned study roadmap to become a backen
 [ ] JWT Authentication: Secure routes and implement user login/signup.
 
 [ ] Pagination & Filters: Optimize list retrieval for large datasets.
+
+
+##📝 Personal notes: 
+**Routing System:** need to use the cors and app.use(express.json()) for permissions/ read json data.
+**CRUD:**
+**get** is simple
+**post** needs to create a new Task from the req.body and send this with array method (.push)
+**PATCH** is pretty simillar to the post, but doesnt need to be too specified (doesnt require every single info, used to edit/change something inside the object)
+**DELETE:** need to get the id from req.params and create a new array without the task i want to delete using the array method .filter()
