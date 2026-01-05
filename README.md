@@ -22,15 +22,16 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 [x] **HTTP Methods (CRUD)**: Successfully implemented **GET**, **POST**, **DELETE**, **PUT** and **PATCH** methods to manage data, including handling URL parameters (`req.params`) and request bodies (`req.body`).
 
-[x] Controllers Refactor: Separate route definitions from business logic for better scalability.
-
-## TODO:
+[x] **Controllers Refactor:** Separate route definitions from business logic for better scalability.
 
 🔹 Level 2: Advanced Express Features
 
-[ ] Middlewares: Implement global logging and centralized error handling.
+[x] **Input Validation:** Integrate libraries like Zod or Joi to validate request bodies.
 
-[ ] Input Validation: Integrate libraries like Zod or Joi to validate request bodies.
+[x] **Middlewares**: Implement global logging and centralized error handling.
+
+## TODO:
+
 
 🔹 Level 3: Persistence & Infrastructure
 
@@ -46,7 +47,7 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 ## 📝Personal notes: 
 
-## Level 1: Core Logic & Organization
+## 🔹 Level 1: Core Logic & Organization
 
 **Routing System:** need to use the cors and app.use(express.json()) for permissions/ read json data.
 
@@ -61,3 +62,18 @@ This project is evolving. Below are the planned study roadmap to become a backen
 **DELETE:** need to get the id from req.params and create a new array without the task i want to delete using the array method .filter()
 
 **controlers:** are the functions from (get,patch,put,delete) separated from the route definitions.
+
+## 🔹 Level 2: Advanced Express Features
+
+**ZOD:** used to create schemas like typescript, but not for the compiler (dev), for the user input validation.
+
+**.safeParse()** : to handle errors without crashing the app.
+
+**const partialSchema = schemaName.partial():** to keep the type safety without requiring every single data.
+
+**Middlewares:** Functions that run between the Request and the Controller. (looks like a PrivateRoute from reactrouter)
+
+**Next():** A callback function used to pass control to the next middleware or controller in the stack. If not called, the request hangs
+
+**structure**
+the app.ts(server) runs the router, that calls the middlewares that use the schema to validate the inputed datas, then, if passed, the information goes to the controllers and the functions are made.

@@ -10,26 +10,15 @@ export const TodoController = {
     },
     //post
     create: (req: Request, res: Response) => {
-        const result = todoSchema.safeParse(req.body)
-        if (!result.success) {
-            return res.status(400).json({
-                message: "erro de validação, dados insuficientes",
-                details: result.error.format()
-            })
-        }
-        const { taskname, done } = result.data;
-        const newTask = { taskname, done, id: idCounter }
+        const { taskname, done } = req.body;
+        const newTask = { id: idCounter, taskname, done }
         data.push(newTask);
         idCounter++
-        res.status(200).send({ message: "Task created succesfully!" })
+        res.status(201).send({ message: "Task created succesfully!" })
     },
     //PUT
     update: (req: Request, res: Response) => {
-        const result = todoSchema.safeParse(req.body);
-        if (!result.success) {
-            return res.status(400).send({ message: "Erro de validação, dados insuficientes" })
-        }
-        const { taskname, done } = result.data;
+        const { taskname, done } = req.body;
         const { id } = req.params;
         const index = data.findIndex(tsk => tsk.id === Number(id))
         if (index === -1) {
@@ -46,15 +35,13 @@ export const TodoController = {
     //PATCH
     patch: (req: Request, res: Response) => {
         const { id } = req.params;
-        const { taskname, done } = req.body;
         const index = data.findIndex(tsk => tsk.id === Number(id))
         if (index === -1) { return res.status(404).send({ message: "task not found" }) }
-        const updatedTask = {
-            taskname: taskname !== undefined ? taskname : data[index]?.taskname,
-            done: done !== undefined ? done : data[index]?.done,
-            id: Number(id)
-        }
-        data[index] = updatedTask;
+
+        data[index] = {
+            ...data[index],
+            ...req.body
+        };
         return res.status(200).send({ message: "Task updated succesfully!" })
     },
 
