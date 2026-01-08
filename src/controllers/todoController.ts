@@ -1,58 +1,75 @@
 import type { Request, Response } from "express";
 import { todoSchema } from "../schemas/todoSchema.js";
-import { data } from "../data.js"
-let idCounter = 4
+import { prisma } from "../lib/prisma.js";
 
 export const TodoController = {
     //get
-    getAll: (req: Request, res: Response) => {
-        res.json(data)
+    getAll: async (req: Request, res: Response) => {
+        try {
+            const tasks = await prisma.task.findMany({
+                orderBy: {
+                    createdAt: "desc"
+                }
+            });
+            res.json(tasks)
+        } catch (error) {
+            console.error(error)
+            res.status(500).json({ error: "Erro ao encontrar Tasks!" })
+        }
     },
+
     //post
-    create: (req: Request, res: Response) => {
+    create: async (req: Request, res: Response) => {
         const { taskname, done } = req.body;
-        const newTask = { id: idCounter, taskname, done }
-        data.push(newTask);
-        idCounter++
-        res.status(201).send({ message: "Task created succesfully!" })
+        try {
+            const newTask = await prisma.task.create({
+                data: {
+                    taskname: taskname,
+                    done: done ?? false
+                }
+
+            })
+            res.status(201).send({ message: "Task created succesfully!", newTask })
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "erro ao criar task" })
+        }
+
     },
     //PUT
-    update: (req: Request, res: Response) => {
+    update: async (req: Request, res: Response) => {
         const { taskname, done } = req.body;
         const { id } = req.params;
-        const index = data.findIndex(tsk => tsk.id === Number(id))
-        if (index === -1) {
-            return res.status(404).send({ message: "task not found" })
+        try {
+            const update = await prisma.task.update({
+                where: { id: Number(id) },
+                data: {
+                    done: done,
+                    taskname: taskname
+                }
+            })
+            res.status(201).send({ message: "Task updated succesfully!", update })
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Fail to update the task" })
         }
-        const newTask = {
-            taskname: taskname,
-            done: done,
-            id: Number(id)
-        }
-        data[index] = newTask
-        return res.status(202).send({ message: "Task changed succesfully!" })
     },
-    //PATCH
-    patch: (req: Request, res: Response) => {
-        const { id } = req.params;
-        const index = data.findIndex(tsk => tsk.id === Number(id))
-        if (index === -1) { return res.status(404).send({ message: "task not found" }) }
 
-        data[index] = {
-            ...data[index],
-            ...req.body
-        };
-        return res.status(200).send({ message: "Task updated succesfully!" })
-    },
 
     //delete
-    delete: (req: Request, res: Response) => {
+    delete: async (req: Request, res: Response) => {
         const deleteID = Number(req.params.id);
-        const index = data.findIndex(t => t.id === deleteID);
-        if (index === -1) { return res.status(404).send({ message: "Task not found" }) }
-        data.splice(index, 1);
+        try {
+            const remove = await prisma.task.delete({
+                where: { id: Number(deleteID) }
+            })
+            res.status(200).send({ message: "Task deleted successfully" });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "fail to delete task!" })
+        }
 
-        return res.status(200).send({ message: "Task deleted successfully" });
+
     }
 
 }

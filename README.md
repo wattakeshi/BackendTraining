@@ -14,6 +14,7 @@ Postman - Used for API testing (planning to migrate to a more automated tool due
 This project is evolving. Below are the planned study roadmap to become a backend developer:
 
 ## ✅ Completed
+
 🔹 Level 1: Core Logic & Organization
 
 [x] **Server Creation**: Learned how to initialize and configure a backend server using **Node.js**, **Express**, and **TypeScript**.
@@ -30,14 +31,13 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 [x] **Middlewares**: Implement global logging and centralized error handling.
 
-## TODO:
-
-
 🔹 Level 3: Persistence & Infrastructure
 
-[ ] Prisma ORM & PostgreSQL: Move from volatile memory to a persistent database.
+[x] **Prisma ORM & PostgreSQL:** Move from volatile memory to a persistent database.
 
-[ ] Docker: Containerize the application and database for easy deployment.
+[x] **Docker:** Containerize the application and database for easy deployment.
+
+## TODO:
 
 🔹 Level 4: Security & Optimization
 [ ] JWT Authentication: Secure routes and implement user login/signup.
