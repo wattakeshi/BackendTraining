@@ -66,7 +66,7 @@ export const TodoController = {
         const deleteID = Number(req.params.id);
         const userId = (req as any).user.userId
         try {
-            const remove = await prisma.task.delete({
+            const remove = await prisma.task.deleteMany({
                 where: { id: Number(deleteID), userID: userId }
             })
             res.status(200).send({ message: "Task deleted successfully" });
