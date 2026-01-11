@@ -37,10 +37,11 @@ This project is evolving. Below are the planned study roadmap to become a backen
 
 [x] **Docker:** Containerize the application and database for easy deployment.
 
+[x] **JWT Authentication**: Secure routes and implement user login/signup.
+
 ## TODO:
 
 🔹 Level 4: Security & Optimization
-[ ] JWT Authentication: Secure routes and implement user login/signup.
 
 [ ] Pagination & Filters: Optimize list retrieval for large datasets.
 
