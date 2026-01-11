@@ -7,9 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String @unique
+  role     String @default("USER")
+  tasks    Task[]
+}
+
 model Task {
   id        Int      @id @default(autoincrement())
   taskname  String
   done      Boolean  @default(false)
   createdAt DateTime @default(now())
+  userID    Int
+  user      User     @relation(fields: [userID], references: [id])
 }

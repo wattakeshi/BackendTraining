@@ -1,5 +1,5 @@
 import express from "express";
-import { TodoRouter } from "./routers/index.js"
+import { RegisterRouter, TodoRouter } from "./routers/index.js"
 import cors from "cors"
 const app = express();
 const port = 3000;
@@ -9,6 +9,7 @@ app.get("/", (req, res) => {
     res.send({ message: "HelloWorld!" })
 })
 app.use("/todos", TodoRouter)
+app.use("/register", RegisterRouter)
 app.listen(port, () => {
     console.log(`Servidor funcionando na porta: ${port}`)
 })
